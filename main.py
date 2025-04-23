@@ -1,20 +1,42 @@
-palavra = 'yuri'
-palavra = palavra.lower()
+import time
+import random
+
+print("Seu jogo está iniciando...\n")
+
+time.sleep(2.5)
+print("Seu jogo foi iniciado!\n")
+
 
 contagemErros = 0
 dicaSolicitar = 0
-print("Digite 0 quando quiser parar")
+
+print("Digite:\n"
+      "0 -> PARAR\n"
+      "3 -> DICA\n")
+
+nomes = ["yuri","joao", "maria", "josé"]
+animais = ["girafa","cachorro"]
+objeto = ["copo", "computador"]
+
+arrays = [nomes, animais, objeto]
+choice = random.choice(arrays)
+
+palavra = random.choice(choice)
+palavra = palavra.lower()
+
+if palavra in nomes:
+    print("A palavra é um nome!")
+elif palavra in animais:
+    print("A palavra é um animal!")
+elif palavra in objeto:
+    print("A palavra é um objeto!")
+
+time.sleep(1)
 while True:
     sugestao = input("Digite sua sugestão: ")
     sugestao = sugestao.lower()
 
     contagemErros += 1
-
-    if  contagemErros == 3:
-        print(' ')
-        print("Para dica, digite: 3")
-        print(" ")
-
 
     contPalavras = 0;
     for i in palavra:
@@ -26,16 +48,24 @@ while True:
         print(" ")
         print(f"Dica: {espacosPalavra}" )
 
-    contDnv = 0
-    for i in sugestao:
-        for i2 in palavra:
-            if i == i2:
-                contDnv += 1
+    contEqual = 0
 
-    if 2 <= contDnv < 4:
-        print(f"{sugestao} está perto")
-    elif contDnv >= 4:
-        print(f"{sugestao} está muito perto")
+    arrayPalavra = []
+    arraySugestao = []
+
+    for i in palavra:
+        arrayPalavra.append(i)
+
+    for i2 in sugestao:
+        arraySugestao.append(i2)
+
+    for i in range(len(sugestao)):
+        if arrayPalavra[i] == arraySugestao[i]:
+            contEqual += 1
+
+    if contEqual >= 3:
+        print(f"{sugestao} está muito perto!")
+
 
     if sugestao == palavra:
         print(f"Você acertou! a palavra é --> {palavra} <--")
