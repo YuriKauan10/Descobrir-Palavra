@@ -14,9 +14,9 @@ print("Digite:\n"
       "0 -> PARAR\n"
       "3 -> DICA\n")
 
-nomes = ["yuri","joao", "maria", "josé"]
-animais = ["girafa","cachorro"]
-objeto = ["copo", "computador"]
+nomes = ["yuri","joao", "maria", "josé","carlos","joseph"]
+animais = ["girafa","cachorro","tartaruga","jacaré","gato"]
+objeto = ["copo", "computador","televisão","garrafa","papel"]
 
 arrays = [nomes, animais, objeto]
 choice = random.choice(arrays)
@@ -59,7 +59,7 @@ while True:
     for i2 in sugestao:
         arraySugestao.append(i2)
 
-    for i in range(len(sugestao)):
+    for i in range(min(len(sugestao), len(palavra))):
         if arrayPalavra[i] == arraySugestao[i]:
             contEqual += 1
 
